@@ -33,12 +33,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
-    - name: Deploy Stage
+    - name: Invoke Jetbrains
       uses: fjogeleit/http-request-action@v1
       with:
         url: 'http://jetbrains.team/api/http/projects/key:HRAAS/automation/deployments/start'
         method: 'POST'
         username: 'ramith'
-        password: ''${{ secrets.JETBRAINSPWD }}'
+        password: ${{ secrets.JETBRAINSPWD }}
         customHeaders: '{"Content-Type": "application/json", "Accept": "application/json"}'
         data: ' {"targetIdentifier": "shareddev", "version": "1.0.0", "commitRefs": [{ "repositoryName": "HRaaS", "branch": "main", "commit": "REF" }]}'
